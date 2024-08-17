@@ -5,7 +5,8 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
-#include "process_achordion.h"
+#include "features/achordion.h"
+// #include "process_achordion.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -72,6 +73,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_achordion(keycode, record)) {
+        return false;
+    }
     switch (keycode) {
         case ST_MACRO_0:
             if (record->event.pressed) {
@@ -98,6 +102,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
     return true;
+}
+
+uint16_t achordion_streak_chord_timeout(uint16_t tap_hold_keycode, uint16_t next_keycode) {
+    if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+        return 0; // Disable streak detection on layer-tap keys.
+    }
+
+    // Otherwise, tap_hold_keycode is a mod-tap key.
+    uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
+    if ((mod & MOD_LSFT) != 0) {
+        return 100; // A shorter streak timeout for Shift mod-tap keys.
+    } else {
+        return 240; // A longer timeout otherwise.
+    }
+}
+
+void matrix_scan_user(void) {
+    achordion_task();
 }
 
 bool is_thumb_key(keyrecord_t *record) {
