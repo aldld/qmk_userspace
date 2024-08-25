@@ -211,6 +211,21 @@ uint16_t achordion_streak_chord_timeout(uint16_t tap_hold_keycode, uint16_t next
     }
 }
 
+bool achordion_eager_mod(uint8_t mod) {
+    switch (mod) {
+        case MOD_LSFT:
+        case MOD_RSFT:
+        case MOD_LGUI:
+        case MOD_RGUI:
+        case MOD_LCTL:
+        case MOD_RCTL:
+            return true;  // Eagerly apply Shift, GUI, and Ctrl mods.
+
+        default:
+            return false;
+    }
+}
+
 void matrix_scan_user(void) {
     achordion_task();
 }
