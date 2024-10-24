@@ -204,10 +204,10 @@ uint16_t achordion_streak_chord_timeout(uint16_t tap_hold_keycode, uint16_t next
 
     // Otherwise, tap_hold_keycode is a mod-tap key.
     uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
-    if ((mod & MOD_LSFT) != 0) {
-        return 100; // A shorter streak timeout for Shift mod-tap keys.
+    if ((mod & MOD_LSFT) != 0 || (mod & MOD_RSFT) != 0) {
+        return 50; // A shorter streak timeout for Shift mod-tap keys.
     } else {
-        return 240; // A longer timeout otherwise.
+        return 400; // A longer timeout otherwise.
     }
 }
 
@@ -223,6 +223,17 @@ bool achordion_eager_mod(uint8_t mod) {
 
         default:
             return false;
+    }
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Shorter tapping term for shift mod keys.
+        case MT(MOD_LSFT, KC_T):
+        case MT(MOD_RSFT, KC_N):
+            return 130;
+        default:
+            return TAPPING_TERM;
     }
 }
 
