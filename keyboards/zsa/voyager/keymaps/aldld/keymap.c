@@ -2,6 +2,7 @@
 // Copyright 2023 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
@@ -31,7 +32,7 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ┌────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬───────────────┐                          ┌───────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬──────────┐
-//    │  MAC_LOCK  │                 │                 │                 │                 │               │                          │               │                 │                 │                 │                 │          │
+//    │  MAC_LOCK  │     HYPR(1)     │     HYPR(2)     │     HYPR(3)     │     HYPR(4)     │    HYPR(5)    │                          │    HYPR(6)    │     HYPR(7)     │     HYPR(8)     │     HYPR(9)     │     HYPR(0)     │          │
 //    ├────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                          ├───────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼──────────┤
 //    │    tab     │        q        │        w        │        f        │        p        │       b       │                          │       j       │        l        │        u        │        y        │        ;        │    \     │
 //    ├────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                          ├───────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼──────────┤
@@ -42,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                                                                         │ LT(_NAV, spc) │ LT(_MEDIA, -) │   │ bspc │ LT(_NUM, ent) │
 //                                                                                         └───────────────┴───────────────┘   └──────┴───────────────┘
 [_BASE] = LAYOUT_voyager(
-  MAC_LOCK         , _______            , _______            , _______            , _______            , _______            ,                                      _______            , _______            , _______            , _______            , _______            , _______        ,
+  MAC_LOCK         , HYPR(KC_1)         , HYPR(KC_2)         , HYPR(KC_3)         , HYPR(KC_4)         , HYPR(KC_5)         ,                                      HYPR(KC_6)         , HYPR(KC_7)         , HYPR(KC_8)         , HYPR(KC_9)         , HYPR(KC_0)         , _______        ,
   KC_TAB           , KC_Q               , KC_W               , KC_F               , KC_P               , KC_B               ,                                      KC_J               , KC_L               , KC_U               , KC_Y               , KC_SCLN            , KC_BSLS        ,
   ALL_T(KC_ESCAPE) , MT(MOD_LCTL, KC_A) , MT(MOD_LALT, KC_R) , MT(MOD_LGUI, KC_S) , MT(MOD_LSFT, KC_T) , KC_G               ,                                      KC_M               , MT(MOD_RSFT, KC_N) , MT(MOD_RGUI, KC_E) , MT(MOD_LALT, KC_I) , MT(MOD_RCTL, KC_O) , ALL_T(KC_QUOTE),
   MEH_T(KC_GRAVE)  , LT(_VIM, KC_Z)     , KC_X               , KC_C               , KC_D               , KC_V               ,                                      KC_K               , LT(_SYM, KC_H)     , KC_COMMA           , KC_DOT             , KC_SLASH           , MEH_T(KC_EQUAL),
@@ -68,23 +69,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                 _______ , _______ ,     _______ , _______
 ),
 
-//    ┌─────────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬──────┬──────┬──────┬──────┬───────────┐
-//    │         │     │     │     │     │     │               │     │      │      │      │      │           │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼──────┼──────┼──────┼──────┼───────────┤
-//    │   up    │  [  │  7  │  8  │  9  │  ]  │               │     │      │      │      │      │           │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼──────┼──────┼──────┼──────┼───────────┤
-//    │ LSFT(g) │  ;  │  4  │  5  │  6  │  =  │               │     │ rsft │ rgui │ lalt │ rctl │ csag-none │
-//    ├─────────┼─────┼─────┼─────┼─────┼─────┤               ├─────┼──────┼──────┼──────┼──────┼───────────┤
-//    │  down   │  `  │  1  │  2  │  3  │  \  │               │     │      │      │      │      │ csa-none  │
-//    └─────────┴─────┴─────┴─────┴─────┼─────┼─────┐   ┌─────┼─────┼──────┴──────┴──────┴──────┴───────────┘
-//                                      │  0  │     │   │     │     │
-//                                      └─────┴─────┘   └─────┴─────┘
+//    ┌─────────┬────────┬────────┬────────┬────────┬────────┐               ┌────────┬────────┬────────┬────────┬────────┬───────────┐
+//    │         │ MEH(1) │ MEH(2) │ MEH(3) │ MEH(4) │ MEH(5) │               │ MEH(6) │ MEH(7) │ MEH(8) │ MEH(9) │ MEH(0) │           │
+//    ├─────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────┼────────┼────────┼────────┼───────────┤
+//    │   up    │   [    │   7    │   8    │   9    │   ]    │               │        │        │        │        │        │           │
+//    ├─────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────┼────────┼────────┼────────┼───────────┤
+//    │ LSFT(g) │   ;    │   4    │   5    │   6    │   =    │               │        │  rsft  │  rgui  │  lalt  │  rctl  │ csag-none │
+//    ├─────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────┼────────┼────────┼────────┼───────────┤
+//    │  down   │   `    │   1    │   2    │   3    │   \    │               │        │        │        │        │        │ csa-none  │
+//    └─────────┴────────┴────────┴────────┴────────┼────────┼─────┐   ┌─────┼────────┼────────┴────────┴────────┴────────┴───────────┘
+//                                                  │   0    │     │   │     │        │
+//                                                  └────────┴─────┘   └─────┴────────┘
 [_NUM] = LAYOUT_voyager(
-  _______    , _______  , _______ , _______ , _______ , _______  ,                         _______ , _______ , _______ , _______ , _______ , _______,
-  KC_UP      , KC_LBRC  , KC_7    , KC_8    , KC_9    , KC_RBRC  ,                         _______ , _______ , _______ , _______ , _______ , _______,
-  LSFT(KC_G) , KC_SCLN  , KC_4    , KC_5    , KC_6    , KC_EQUAL ,                         _______ , KC_RSFT , KC_RGUI , KC_LALT , KC_RCTL , KC_HYPR,
-  KC_DOWN    , KC_GRAVE , KC_1    , KC_2    , KC_3    , KC_BSLS  ,                         _______ , _______ , _______ , _______ , _______ , KC_MEH ,
-                                                        KC_0     , _______ ,     _______ , _______
+  _______    , MEH(KC_1) , MEH(KC_2) , MEH(KC_3) , MEH(KC_4) , MEH(KC_5) ,                         MEH(KC_6) , MEH(KC_7) , MEH(KC_8) , MEH(KC_9) , MEH(KC_0) , _______,
+  KC_UP      , KC_LBRC   , KC_7      , KC_8      , KC_9      , KC_RBRC   ,                         _______   , _______   , _______   , _______   , _______   , _______,
+  LSFT(KC_G) , KC_SCLN   , KC_4      , KC_5      , KC_6      , KC_EQUAL  ,                         _______   , KC_RSFT   , KC_RGUI   , KC_LALT   , KC_RCTL   , KC_HYPR,
+  KC_DOWN    , KC_GRAVE  , KC_1      , KC_2      , KC_3      , KC_BSLS   ,                         _______   , _______   , _______   , _______   , _______   , KC_MEH ,
+                                                               KC_0      , _______ ,     _______ , _______
 ),
 
 //    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌─────┬──────┬──────┬──────┬──────┬───────────┐
@@ -106,23 +107,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      KC_RPRN , _______ ,     _______ , _______
 ),
 
-//    ┌───────────┬──────┬──────┬──────┬──────┬─────┐               ┌─────┬────────────┬─────────────────┬───────────┬────────────┬─────────┐
-//    │           │      │      │      │      │     │               │     │            │                 │           │            │         │
-//    ├───────────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
-//    │           │      │      │      │      │     │               │     │ LCTL(left) │ LCTL(LSFT(tab)) │ LCTL(tab) │ LCTL(rght) │         │
-//    ├───────────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
-//    │ csag-none │ lctl │ lalt │ lgui │ lsft │     │               │     │    left    │      down       │    up     │    rght    │ CW_TOGG │
-//    ├───────────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
-//    │ csa-none  │      │      │      │      │     │               │     │    home    │      pgdn       │  pAGE_UP  │    end     │         │
-//    └───────────┴──────┴──────┴──────┴──────┼─────┼─────┐   ┌─────┼─────┼────────────┴─────────────────┴───────────┴────────────┴─────────┘
-//                                            │     │     │   │ del │  :  │
-//                                            └─────┴─────┘   └─────┴─────┘
+//    ┌───────────┬────────┬────────┬────────┬────────┬────────┐               ┌────────┬────────────┬─────────────────┬───────────┬────────────┬─────────┐
+//    │           │ MEH(1) │ MEH(2) │ MEH(3) │ MEH(4) │ MEH(5) │               │ MEH(6) │   MEH(7)   │     MEH(8)      │  MEH(9)   │   MEH(0)   │         │
+//    ├───────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
+//    │           │        │        │        │        │        │               │        │ LCTL(left) │ LCTL(LSFT(tab)) │ LCTL(tab) │ LCTL(rght) │         │
+//    ├───────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
+//    │ csag-none │  lctl  │  lalt  │  lgui  │  lsft  │        │               │        │    left    │      down       │    up     │    rght    │ CW_TOGG │
+//    ├───────────┼────────┼────────┼────────┼────────┼────────┤               ├────────┼────────────┼─────────────────┼───────────┼────────────┼─────────┤
+//    │ csa-none  │        │        │        │        │        │               │        │    home    │      pgdn       │  pAGE_UP  │    end     │         │
+//    └───────────┴────────┴────────┴────────┴────────┼────────┼─────┐   ┌─────┼────────┼────────────┴─────────────────┴───────────┴────────────┴─────────┘
+//                                                    │        │     │   │ del │   :    │
+//                                                    └────────┴─────┘   └─────┴────────┘
 [_NAV] = LAYOUT_voyager(
-  _______ , _______ , _______ , _______ , _______ , _______ ,                           _______ , _______       , _______            , _______      , _______        , _______,
-  _______ , _______ , _______ , _______ , _______ , _______ ,                           _______ , LCTL(KC_LEFT) , LCTL(LSFT(KC_TAB)) , LCTL(KC_TAB) , LCTL(KC_RIGHT) , _______,
-  KC_HYPR , KC_LCTL , KC_LALT , KC_LGUI , KC_LSFT , _______ ,                           _______ , KC_LEFT       , KC_DOWN            , KC_UP        , KC_RIGHT       , CW_TOGG,
-  KC_MEH  , _______ , _______ , _______ , _______ , _______ ,                           _______ , KC_HOME       , KC_PGDN            , KC_PAGE_UP   , KC_END         , _______,
-                                                    _______ , _______ ,     KC_DELETE , KC_COLN
+  _______ , MEH(KC_1) , MEH(KC_2) , MEH(KC_3) , MEH(KC_4) , MEH(KC_5) ,                           MEH(KC_6) , MEH(KC_7)     , MEH(KC_8)          , MEH(KC_9)    , MEH(KC_0)      , _______,
+  _______ , _______   , _______   , _______   , _______   , _______   ,                           _______   , LCTL(KC_LEFT) , LCTL(LSFT(KC_TAB)) , LCTL(KC_TAB) , LCTL(KC_RIGHT) , _______,
+  KC_HYPR , KC_LCTL   , KC_LALT   , KC_LGUI   , KC_LSFT   , _______   ,                           _______   , KC_LEFT       , KC_DOWN            , KC_UP        , KC_RIGHT       , CW_TOGG,
+  KC_MEH  , _______   , _______   , _______   , _______   , _______   ,                           _______   , KC_HOME       , KC_PGDN            , KC_PAGE_UP   , KC_END         , _______,
+                                                            _______   , _______ ,     KC_DELETE , KC_COLN
 ),
 
 //    ┌─────┬──────────┬─────────┬──────────┬─────────────────────┬────────────┐                ┌─────────────┬──────┬──────┬──────┬──────┬─────┐
@@ -202,12 +203,18 @@ uint16_t achordion_streak_chord_timeout(uint16_t tap_hold_keycode, uint16_t next
         return 0; // Disable streak detection on layer-tap keys.
     }
 
+    /*if (next_keycode == KC_BSPC) {*/
+    /*    return 0; // Disable streak detection on backspace.*/
+    /*}*/
+
     // Otherwise, tap_hold_keycode is a mod-tap key.
     uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
     if ((mod & MOD_LSFT) != 0 || (mod & MOD_RSFT) != 0) {
-        return 50; // A shorter streak timeout for Shift mod-tap keys.
+        return 80; // A shorter streak timeout for Shift mod-tap keys.
+    } else if ((mod & MOD_LALT) != 0 || (mod & MOD_RALT) != 0) {
+        return 120; // Alt mod-tap keys.
     } else {
-        return 400; // A longer timeout otherwise.
+        return 500; // A longer timeout otherwise.
     }
 }
 
@@ -228,9 +235,11 @@ bool achordion_eager_mod(uint8_t mod) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // Shorter tapping term for shift mod keys.
+        // Shorter tapping term for shift and alt mod keys.
         case MT(MOD_LSFT, KC_T):
         case MT(MOD_RSFT, KC_N):
+        case MT(MOD_LALT, KC_R):
+        case MT(MOD_LALT, KC_I):
             return 130;
         default:
             return TAPPING_TERM;
