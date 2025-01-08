@@ -1,6 +1,7 @@
 {
-    "userspace_version": "1.0",
+    "userspace_version": "1.1",
     "build_targets": [
-        ["zsa/voyager", "aldld"]
+        ["zsa/voyager", "aldld"],
+        ["beekeeb/piantor_pro", "aldld"]
     ]
 }
