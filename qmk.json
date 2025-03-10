@@ -2,6 +2,7 @@
     "userspace_version": "1.1",
     "build_targets": [
         ["zsa/voyager", "aldld"],
-        ["beekeeb/piantor_pro", "aldld"]
+        ["beekeeb/piantor_pro", "aldld"],
+        ["ploopyco/madromys/rev1_001", "aldld"]
     ]
 }
