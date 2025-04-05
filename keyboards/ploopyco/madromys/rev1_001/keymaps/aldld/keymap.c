@@ -63,7 +63,7 @@ enum td_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        LALT(KC_TAB), TD(BACK_FWD), KC_BTN3,  TD(MSE_BTN2_DRAG),
+        LGUI(LALT(KC_TAB)), TD(BACK_FWD), KC_BTN3,  TD(MSE_BTN2_DRAG),
                  KC_BTN1, KC_BTN3
     ),
     [1] = LAYOUT( // Activate by holding top right
@@ -74,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 extern bool is_drag_scroll;
-td_state_t msbtn2_state = TD_NONE;
-td_state_t lock_drag_scroll_state = TD_NONE;
-bool is_drag_scroll_locked = false;
+td_state_t  msbtn2_state           = TD_NONE;
+td_state_t  lock_drag_scroll_state = TD_NONE;
+bool        is_drag_scroll_locked  = false;
 
 void msebtn2_finished(tap_dance_state_t *state, void *user_data) {
     msbtn2_state = cur_dance(state);
@@ -94,7 +94,7 @@ void msebtn2_reset(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP:
             if (is_drag_scroll_locked) {
                 is_drag_scroll_locked = false;
-                is_drag_scroll = false;
+                is_drag_scroll        = false;
             } else {
                 tap_code16(KC_BTN2);
             }
@@ -110,14 +110,13 @@ void msebtn2_reset(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-
 void lock_drag_scroll_finished(tap_dance_state_t *state, void *user_data) {
     lock_drag_scroll_state = cur_dance(state);
 }
 void lock_drag_scroll_reset(tap_dance_state_t *state, void *user_data) {
     switch (lock_drag_scroll_state) {
         case TD_SINGLE_TAP:
-            is_drag_scroll = true;
+            is_drag_scroll        = true;
             is_drag_scroll_locked = true;
             break;
         default:
@@ -125,11 +124,10 @@ void lock_drag_scroll_reset(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-
 tap_dance_action_t tap_dance_actions[] = {
-    [MSE_BTN2_DRAG] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msebtn2_finished, msebtn2_reset),
+    [MSE_BTN2_DRAG]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, msebtn2_finished, msebtn2_reset),
     [LOCK_DRAG_SCROLL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lock_drag_scroll_finished, lock_drag_scroll_reset),
-    [BACK_FWD] = ACTION_TAP_DANCE_DOUBLE(LGUI(KC_LBRC), LGUI(KC_RBRC))
+    [BACK_FWD]         = ACTION_TAP_DANCE_DOUBLE(LGUI(KC_LBRC), LGUI(KC_RBRC)),
 };
 
 td_state_t cur_dance(tap_dance_state_t *state) {

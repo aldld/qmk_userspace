@@ -96,22 +96,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      KC_RPRN , _______ ,     _______ , _______
 ),
 
-//    ┌─────┬───────────┬──────────┬─────────────────┬────────────┬─────┐               ┌─────────────────┬──────────────────────────────┬──────────────────────────────┬────────────────────────────┬──────────────────────────────┬───────────┐
-//    │     │           │          │                 │            │     │               │                 │                              │                              │                            │                              │           │
-//    ├─────┼───────────┼──────────┼─────────────────┼────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
-//    │     │           │ LGUI(w)  │ LCTL(LSFT(tab)) │ LCTL(tab)  │     │               │ LCTL(LSFT(tab)) │ LALT(LGUI(LCTL(LSFT(left)))) │ LALT(LGUI(LCTL(LSFT(down)))) │ LALT(LGUI(LCTL(LSFT(up)))) │ LALT(LGUI(LCTL(LSFT(rght)))) │ LCTL(tab) │
-//    ├─────┼───────────┼──────────┼─────────────────┼────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
-//    │     │ left_CTRL │ left_ALT │    left_GUI     │ left_SHIFT │     │               │                 │             left             │             down             │             up             │             rght             │  CW_TOGG  │
-//    ├─────┼───────────┼──────────┼─────────────────┼────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
-//    │     │           │          │                 │            │     │               │                 │             home             │             pgdn             │          pAGE_UP           │             end              │           │
-//    └─────┴───────────┴──────────┴─────────────────┴────────────┼─────┼─────┐   ┌─────┼─────────────────┼──────────────────────────────┴──────────────────────────────┴────────────────────────────┴──────────────────────────────┴───────────┘
-//                                                                │     │     │   │ del │        :        │
-//                                                                └─────┴─────┘   └─────┴─────────────────┘
+//    ┌─────┬───────────┬──────────┬──────────────────┬─────────────┬─────┐               ┌─────────────────┬──────────────────────────────┬──────────────────────────────┬────────────────────────────┬──────────────────────────────┬───────────┐
+//    │     │           │          │                  │             │     │               │                 │                              │                              │                            │                              │           │
+//    ├─────┼───────────┼──────────┼──────────────────┼─────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
+//    │     │           │          │ LCTL(LSFT(tab))  │  LCTL(tab)  │     │               │ LCTL(LSFT(tab)) │ LALT(LGUI(LCTL(LSFT(left)))) │ LALT(LGUI(LCTL(LSFT(down)))) │ LALT(LGUI(LCTL(LSFT(up)))) │ LALT(LGUI(LCTL(LSFT(rght)))) │ LCTL(tab) │
+//    ├─────┼───────────┼──────────┼──────────────────┼─────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
+//    │     │ left_CTRL │ left_ALT │     left_GUI     │ left_SHIFT  │     │               │                 │             left             │             down             │             up             │             rght             │  CW_TOGG  │
+//    ├─────┼───────────┼──────────┼──────────────────┼─────────────┼─────┤               ├─────────────────┼──────────────────────────────┼──────────────────────────────┼────────────────────────────┼──────────────────────────────┼───────────┤
+//    │     │           │          │ SELECT_WORD_BACK │ SELECT_WORD │     │               │                 │             home             │             pgdn             │          pAGE_UP           │             end              │           │
+//    └─────┴───────────┴──────────┴──────────────────┴─────────────┼─────┼─────┐   ┌─────┼─────────────────┼──────────────────────────────┴──────────────────────────────┴────────────────────────────┴──────────────────────────────┴───────────┘
+//                                                                  │     │     │   │ del │        :        │
+//                                                                  └─────┴─────┘   └─────┴─────────────────┘
 [_NAV] = LAYOUT_voyager(
   _______ , _______      , _______     , _______            , _______       , _______ ,                           _______            , _______                         , _______                         , _______                       , _______                          , _______     ,
-  _______ , _______      , LGUI(KC_W)  , LCTL(LSFT(KC_TAB)) , LCTL(KC_TAB)  , _______ ,                           LCTL(LSFT(KC_TAB)) , LALT(LGUI(LCTL(LSFT(KC_LEFT)))) , LALT(LGUI(LCTL(LSFT(KC_DOWN)))) , LALT(LGUI(LCTL(LSFT(KC_UP)))) , LALT(LGUI(LCTL(LSFT(KC_RIGHT)))) , LCTL(KC_TAB),
+  _______ , _______      , _______     , LCTL(LSFT(KC_TAB)) , LCTL(KC_TAB)  , _______ ,                           LCTL(LSFT(KC_TAB)) , LALT(LGUI(LCTL(LSFT(KC_LEFT)))) , LALT(LGUI(LCTL(LSFT(KC_DOWN)))) , LALT(LGUI(LCTL(LSFT(KC_UP)))) , LALT(LGUI(LCTL(LSFT(KC_RIGHT)))) , LCTL(KC_TAB),
   _______ , KC_LEFT_CTRL , KC_LEFT_ALT , KC_LEFT_GUI        , KC_LEFT_SHIFT , _______ ,                           _______            , KC_LEFT                         , KC_DOWN                         , KC_UP                         , KC_RIGHT                         , CW_TOGG     ,
-  _______ , _______      , _______     , _______            , _______       , _______ ,                           _______            , KC_HOME                         , KC_PGDN                         , KC_PAGE_UP                    , KC_END                           , _______     ,
+  _______ , _______      , _______     , SELECT_WORD_BACK   , SELECT_WORD   , _______ ,                           _______            , KC_HOME                         , KC_PGDN                         , KC_PAGE_UP                    , KC_END                           , _______     ,
                                                                               _______ , _______ ,     KC_DELETE , KC_COLN
 ),
 
@@ -221,15 +221,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        // Shorter tapping term for shift and alt mod keys.
+        // Shorter tapping term for shift mod keys.
         case MT(MOD_LSFT, KC_T):
         case MT(MOD_RSFT, KC_N):
-        case MT(MOD_LALT, KC_R):
-        case MT(MOD_LALT, KC_I):
-            return 180;
+            return 150;
         default:
             return TAPPING_TERM;
     }
+}
+
+uint16_t get_tap_flow(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    // Only apply to home row mods, excluding shift.
+    switch (keycode) {
+        case MT(MOD_LCTL, KC_A):
+        case MT(MOD_LALT, KC_R):
+        case MT(MOD_LGUI, KC_S):
+        /*case MT(MOD_LSFT, KC_T):*/
+        /*case MT(MOD_RSFT, KC_N):*/
+        case MT(MOD_RGUI, KC_E):
+        case MT(MOD_LALT, KC_I):
+        case MT(MOD_RCTL, KC_O):
+            return g_tap_flow_term;
+    }
+
+    return 0;
 }
 
 // bool is_thumb_key(keyrecord_t *record) {
