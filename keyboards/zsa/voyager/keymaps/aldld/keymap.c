@@ -25,6 +25,9 @@ enum custom_keycodes {
     ST_MACRO_0,
     ST_MACRO_1,
     ST_MACRO_2,
+    MD_LINK,
+    CLN_EQ,
+    NEQ,
     MAC_LOCK,
 };
 
@@ -40,7 +43,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ┌────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬───────────────┐                          ┌───────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┬──────────┐
-//    │  MAC_LOCK  │                 │                 │                 │                 │               │                          │               │                 │                 │                 │                 │          │
+//    │  MAC_LOCK  │                 │                 │                 │                 │     btn1      │                          │               │        [        │        ]        │                 │                 │          │
 //    ├────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                          ├───────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼──────────┤
 //    │    tab     │        q        │        w        │        f        │        p        │       b       │                          │       j       │        l        │        u        │        y        │        ;        │    \     │
 //    ├────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼───────────────┤                          ├───────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┼──────────┤
@@ -51,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                                                                         │ LT(_NAV, spc) │ LT(_MEDIA, -) │   │ bspc │ LT(_NUM, ent) │
 //                                                                                         └───────────────┴───────────────┘   └──────┴───────────────┘
 [_BASE] = LAYOUT_voyager(
-  MAC_LOCK         , _______            , _______            , _______            , _______            , _______            ,                                      _______            , _______            , _______            , _______            , _______            , _______        ,
+  MAC_LOCK         , _______            , _______            , _______            , _______            , KC_BTN1            ,                                      _______            , KC_LBRC            , KC_RBRC            , _______            , _______            , _______        ,
   KC_TAB           , KC_Q               , KC_W               , KC_F               , KC_P               , KC_B               ,                                      KC_J               , KC_L               , KC_U               , KC_Y               , KC_SCLN            , KC_BSLS        ,
   ALL_T(KC_ESCAPE) , MT(MOD_LCTL, KC_A) , MT(MOD_LALT, KC_R) , MT(MOD_LGUI, KC_S) , MT(MOD_LSFT, KC_T) , KC_G               ,                                      KC_M               , MT(MOD_RSFT, KC_N) , MT(MOD_RGUI, KC_E) , MT(MOD_LALT, KC_I) , MT(MOD_RCTL, KC_O) , ALL_T(KC_QUOTE),
   MEH_T(KC_GRAVE)  , LT(_VIM, KC_Z)     , KC_X               , KC_C               , KC_D               , KC_V               ,                                      KC_K               , LT(_SYM, KC_H)     , KC_COMMA           , KC_DOT             , KC_SLASH           , MEH_T(KC_EQUAL),
@@ -122,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├───────────┼──────────┼─────────┼─────────────────┼─────────────────────┼────────────┤                ├──────┼────────────────────────┼────────────────────────┼──────────────────────┼────────────────────────┼─────┤
 //    │ csag-none │ LGUI(a)  │ LGUI(r) │     LGUI(s)     │       LGUI(t)       │ ST_MACRO_0 │                │      │          mprv          │          vold          │         volu         │          mnxt          │     │
 //    ├───────────┼──────────┼─────────┼─────────────────┼─────────────────────┼────────────┤                ├──────┼────────────────────────┼────────────────────────┼──────────────────────┼────────────────────────┼─────┤
-//    │ csa-none  │ mAC_UNDO │ mAC_CUT │    mAC_COPY     │ LGUI(LCTL(LSFT(4))) │ mAC_PASTE  │                │      │                        │                        │                      │                        │     │
+//    │ csa-none  │ mAC_UNDO │ mAC_CUT │    mAC_COPY     │ LGUI(LCTL(LSFT(4))) │ mAC_PASTE  │                │      │   SENTENCE_CASE_OFF    │    SENTENCE_CASE_ON    │         bRMD         │          bRMU          │     │
 //    └───────────┴──────────┴─────────┴─────────────────┴─────────────────────┼────────────┼─────┐   ┌──────┼──────┼────────────────────────┴────────────────────────┴──────────────────────┴────────────────────────┴─────┘
 //                                                                             │            │     │   │ mute │ mply │
 //                                                                             └────────────┴─────┘   └──────┴──────┘
@@ -130,30 +133,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______ , _______     , _______    , _______            , _______                , _______      ,                               _______             , _______                   , RGB_VAD                   , RGB_VAI                 , RGB_TOG                    , _______,
   _______ , LGUI(KC_Q)  , LGUI(KC_W) , LCTL(LSFT(KC_TAB)) , LCTL(KC_TAB)           , _______      ,                               _______             , LALT(LCTL(LSFT(KC_LEFT))) , LALT(LCTL(LSFT(KC_DOWN))) , LALT(LCTL(LSFT(KC_UP))) , LALT(LCTL(LSFT(KC_RIGHT))) , _______,
   KC_HYPR , LGUI(KC_A)  , LGUI(KC_R) , LGUI(KC_S)         , LGUI(KC_T)             , ST_MACRO_0   ,                               _______             , KC_MEDIA_PREV_TRACK       , KC_AUDIO_VOL_DOWN         , KC_AUDIO_VOL_UP         , KC_MEDIA_NEXT_TRACK        , _______,
-  KC_MEH  , KC_MAC_UNDO , KC_MAC_CUT , KC_MAC_COPY        , LGUI(LCTL(LSFT(KC_4))) , KC_MAC_PASTE ,                               _______             , _______                   , _______                   , _______                 , _______                    , _______,
+  KC_MEH  , KC_MAC_UNDO , KC_MAC_CUT , KC_MAC_COPY        , LGUI(LCTL(LSFT(KC_4))) , KC_MAC_PASTE ,                               _______             , SENTENCE_CASE_OFF         , SENTENCE_CASE_ON          , KC_BRMD                 , KC_BRMU                    , _______,
                                                                                      _______      , _______ ,     KC_AUDIO_MUTE , KC_MEDIA_PLAY_PAUSE
 ),
 
-//    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌────────────┬─────────┬─────────┬─────────┬─────────┬─────┐
-//    │     │     │     │     │     │     │               │            │         │         │         │         │     │
-//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │     │     │     │     │     │               │            │         │         │         │         │     │
-//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │     │     │     │     │     │               │ ST_MACRO_1 │ RCTL(h) │ LCTL(j) │ LCTL(k) │ LCTL(l) │     │
-//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │     │     │     │     │     │               │ ST_MACRO_2 │ LALT(h) │ LALT(j) │ LALT(k) │ LALT(l) │     │
-//    └─────┴─────┴─────┴─────┴─────┼─────┼─────┐   ┌─────┼────────────┼─────────┴─────────┴─────────┴─────────┴─────┘
+//    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌────────────┬─────────┬─────────┬─────────┬─────────┬─────────┐
+//    │     │     │     │     │     │     │               │            │         │         │         │         │         │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+//    │     │     │     │     │     │     │               │  MD_LINK   │ LALT([) │         │         │ LALT(]) │ LALT(\) │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+//    │     │     │     │     │     │     │               │ ST_MACRO_1 │ RCTL(h) │ LCTL(j) │ LCTL(k) │ LCTL(l) │         │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+//    │     │     │     │     │     │     │               │ ST_MACRO_2 │ LALT(h) │ LALT(j) │ LALT(k) │ LALT(l) │         │
+//    └─────┴─────┴─────┴─────┴─────┼─────┼─────┐   ┌─────┼────────────┼─────────┴─────────┴─────────┴─────────┴─────────┘
 //                                  │     │     │   │     │            │
 //                                  └─────┴─────┘   └─────┴────────────┘
 [_VIM] = LAYOUT_voyager(
-  _______ , _______ , _______ , _______ , _______ , _______ ,                         _______    , _______    , _______    , _______    , _______    , _______,
-  _______ , _______ , _______ , _______ , _______ , _______ ,                         _______    , _______    , _______    , _______    , _______    , _______,
-  _______ , _______ , _______ , _______ , _______ , _______ ,                         ST_MACRO_1 , RCTL(KC_H) , LCTL(KC_J) , LCTL(KC_K) , LCTL(KC_L) , _______,
-  _______ , _______ , _______ , _______ , _______ , _______ ,                         ST_MACRO_2 , LALT(KC_H) , LALT(KC_J) , LALT(KC_K) , LALT(KC_L) , _______,
+  _______ , _______ , _______ , _______ , _______ , _______ ,                         _______    , _______       , _______    , _______    , _______       , _______      ,
+  _______ , _______ , _______ , _______ , _______ , _______ ,                         MD_LINK    , LALT(KC_LBRC) , _______    , _______    , LALT(KC_RBRC) , LALT(KC_BSLS),
+  _______ , _______ , _______ , _______ , _______ , _______ ,                         ST_MACRO_1 , RCTL(KC_H)    , LCTL(KC_J) , LCTL(KC_K) , LCTL(KC_L)    , _______      ,
+  _______ , _______ , _______ , _______ , _______ , _______ ,                         ST_MACRO_2 , LALT(KC_H)    , LALT(KC_J) , LALT(KC_K) , LALT(KC_L)    , _______      ,
                                                     _______ , _______ ,     _______ , _______
 )
 };
 // clang-format on
+
+// const uint16_t PROGMEM combo_tg[] = {MT(MOD_LSFT, KC_T), KC_G, COMBO_END};
+// const uint16_t PROGMEM combo_mn[] = {KC_M, MT(MOD_RSFT, KC_N), COMBO_END};
+
+const uint16_t PROGMEM combo_fs[] = {KC_F, MT(MOD_LGUI, KC_S), COMBO_END};
+const uint16_t PROGMEM combo_pt[] = {KC_P, MT(MOD_LSFT, KC_T), COMBO_END};
+const uint16_t PROGMEM combo_ln[] = {KC_L, MT(MOD_RSFT, KC_N), COMBO_END};
+const uint16_t PROGMEM combo_ue[] = {KC_U, MT(MOD_RGUI, KC_E), COMBO_END};
+
+
+const uint16_t PROGMEM combo_az[] = {MT(MOD_LCTL, KC_A), LT(_VIM, KC_Z), COMBO_END};
+const uint16_t PROGMEM combo_zx[] = {LT(_VIM, KC_Z), KC_X, COMBO_END};
+
+combo_t key_combos[] = {
+    // COMBO(combo_tg, KC_LBRC),
+    // COMBO(combo_mn, KC_RBRC),
+
+
+    COMBO(combo_fs, KC_LBRC),
+    COMBO(combo_pt, KC_RBRC),
+    COMBO(combo_ln, KC_LBRC),
+    COMBO(combo_ue, KC_RBRC),
+
+    COMBO(combo_az, CLN_EQ),
+    COMBO(combo_zx, NEQ),
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -180,51 +209,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgblight_mode(1);
             }
             return false;
+
+        case MD_LINK:
+            if (record->event.pressed) {
+                SEND_STRING("[]()" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+            }
+            break;
+
+        case CLN_EQ:
+            if (record->event.pressed) {
+                SEND_STRING(":=");
+            }
+            break;
+        case NEQ:
+            if (record->event.pressed) {
+                SEND_STRING("!=");
+            }
+            break;
     }
     return true;
 }
-
-// uint16_t achordion_streak_chord_timeout(uint16_t tap_hold_keycode, uint16_t next_keycode) {
-//     if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
-//         return 0; // Disable streak detection on layer-tap keys.
-//     }
-//
-//     /*if (next_keycode == KC_BSPC) {*/
-//     /*    return 0; // Disable streak detection on backspace.*/
-//     /*}*/
-//
-//     // Otherwise, tap_hold_keycode is a mod-tap key.
-//     uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
-//     if ((mod & MOD_LSFT) != 0 || (mod & MOD_RSFT) != 0) {
-//         return 80; // A shorter streak timeout for Shift mod-tap keys.
-//     } else if ((mod & MOD_LALT) != 0 || (mod & MOD_RALT) != 0) {
-//         return 120; // Alt mod-tap keys.
-//     } else {
-//         return 500; // A longer timeout otherwise.
-//     }
-// }
-//
-// bool achordion_eager_mod(uint8_t mod) {
-//     switch (mod) {
-//         case MOD_LSFT:
-//         case MOD_RSFT:
-//         case MOD_LGUI:
-//         case MOD_RGUI:
-//         case MOD_LCTL:
-//         case MOD_RCTL:
-//             return true; // Eagerly apply Shift, GUI, and Ctrl mods.
-//
-//         default:
-//             return false;
-//     }
-// }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // Shorter tapping term for shift mod keys.
         case MT(MOD_LSFT, KC_T):
         case MT(MOD_RSFT, KC_N):
-            return 150;
+            // return 200;
+
+        // Nav/num layer tap thumb keys
+        case LT(_NAV, KC_SPACE):
+        case LT(_NUM, KC_ENTER):
+
+        // Symbol layer tap
+        case LT(_SYM, KC_H):
+            return 155;
         default:
             return TAPPING_TERM;
     }
@@ -246,11 +265,3 @@ uint16_t get_tap_flow(uint16_t keycode, keyrecord_t *record, uint16_t prev_keyco
 
     return 0;
 }
-
-// bool is_thumb_key(keyrecord_t *record) {
-//     return record->event.key.row % (MATRIX_ROWS / 2) >= 4;
-// }
-//
-// bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t *tap_hold_record, uint16_t other_keycode, keyrecord_t *other_record) {
-//     return is_thumb_key(tap_hold_record) || is_thumb_key(other_record) || achordion_opposite_hands(tap_hold_record, other_record);
-// }

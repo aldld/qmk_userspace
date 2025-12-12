@@ -64,7 +64,7 @@ enum td_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         LGUI(LALT(KC_TAB)), TD(BACK_FWD), KC_BTN3,  TD(MSE_BTN2_DRAG),
-                 KC_BTN1, KC_BTN3
+                 KC_BTN1, KC_BTN3 // TODO: Make this another btn2
     ),
     [1] = LAYOUT( // Activate by holding top right
         _______, _______, _______, _______,

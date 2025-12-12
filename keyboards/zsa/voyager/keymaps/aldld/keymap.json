@@ -1,6 +1,7 @@
 {
     "modules": [
         "getreuer/tap_flow",
-        "getreuer/select_word"
+        "getreuer/select_word",
+        "getreuer/sentence_case"
     ]
 }
