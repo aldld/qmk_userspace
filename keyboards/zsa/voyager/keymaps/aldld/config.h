@@ -3,6 +3,7 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
+
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define SERIAL_NUMBER "bZvgQ/QodNz"
 #define LAYER_STATE_8BIT
@@ -24,7 +25,9 @@
 #define TAPPING_TERM 320 // 220
 #define PERMISSIVE_HOLD
 
-#define TAP_FLOW_TERM 200
+#define TAP_FLOW_TERM 300
+#define FLOW_TAP_TERM 300
+#define COMBO_TERM 25
 
 #define SELECT_WORD_OS_MAC
 
